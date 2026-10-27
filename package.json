@@ -1,0 +1,46 @@
+{
+  "name": "dsh-sillytavern",
+  "version": "1.0.0",
+  "description": "SillyTavern 酒馆引擎接入 DeepSeek Harness：角色卡、世界书、预设/宏、正则、作者注释、快速回复、MVU 变量、跑团模式与智能 UI 三栏布局。",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md",
+    "dsh-plugin.json",
+    "scripts"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-ui-settings"
+      ]
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-tools": "*"
+  },
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "sillytavern",
+    "tavern",
+    "roleplay",
+    "trpg"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.13.0"
+  }
+}

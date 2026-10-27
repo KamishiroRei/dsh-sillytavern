@@ -1,0 +1,14 @@
+# 插件自己的运行时数据（角色卡、世界书、跑团存档）不进仓库
+.restart/
+.*.log
+.*e2e*
+.*preflight*
+*.png
+!docs/**/*.png
+
+# 依赖与系统噪音
+node_modules/
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db

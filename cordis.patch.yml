@@ -1,0 +1,5 @@
+# dsh-sillytavern bundle patch
+# 只做 id/name 的纯 insert：可热挂载，不需要改 profile。
+- insert:
+    - id: dsh-sillytavern
+      name: dsh-sillytavern
