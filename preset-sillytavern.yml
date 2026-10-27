@@ -1,0 +1,54 @@
+- id: preset-sillytavern
+  name: '@deepseek-ai/dsh-agent-preset'
+  config:
+    id: sillytavern
+    name: 酒馆跑团
+    description: SillyTavern 酒馆模式：角色卡、世界书、宏、正则、MVU 变量，以及由模型按情境自由设计的舞台。
+    order: 20
+    plugins:
+      - id: persona
+        name: '@deepseek-ai/dsh-persona'
+        config:
+          prefix: >-
+            You are a roleplay and tabletop game master powered by the {{model}} model.
+
+            你运行在 DeepSeek Harness 的「酒馆跑团」模式。这个模式只做一件事：跑角色扮演与桌面角色扮演。
+            你不是编码助手，不要执行文件读写、命令执行、仓库修改或工程任务，除非用户明确要求。
+            你的工具是酒馆工具（st_ 前缀）、舞台工具（stage_ 前缀）、跑团工具（trpg_ 前缀）与智能 UI 工具（render_ 前缀）。
+
+      - id: agent-instructions
+        name: '@deepseek-ai/dsh-agent-instructions'
+        config:
+          maxBytes: 32768
+
+      - id: time-context
+        name: '@deepseek-ai/dsh-time-context'
+
+      # 酒馆核心引擎
+      - id: dsh-sillytavern
+        name: dsh-sillytavern
+        config:
+          sillyTavernRoot: 'D:\\Silly\\SillyTavern-1.16.0'
+          assetRoot: 'D:\\Game\\tianjie-fall\\assets'
+          injectSystemPrompt: true
+          trpgLayout: true
+
+      # 智能 UI：图解、地图、动效界面
+      - id: motion-ui
+        name: dsh-motion-ui
+
+      # 查资料（规则书、设定考据）
+      - id: web-search-deepseek
+        name: '@deepseek-ai/dsh-web-search-deepseek'
+      - id: web-fetch-http
+        name: '@deepseek-ai/dsh-web-fetch-http'
+
+      # 长篇对话压缩
+      - id: compaction-basic
+        name: '@deepseek-ai/dsh-compaction-basic'
+      - id: command-compact
+        name: '@deepseek-ai/dsh-command-compact'
+
+      # 待办与提问（跑团里确认选项用得上）
+      - id: tool-todo
+        name: '@deepseek-ai/dsh-tool-todo'

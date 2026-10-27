@@ -1,0 +1,15 @@
+feat: 跑团成为独立 agent 模式 + ST 保真度补齐
+
+新增 agent preset「酒馆跑团」，与 standard / ptc 并列在模式选择里。
+选中后会话跑的是酒馆引擎，不是编码助手那套文件/命令工具。
+
+三段式界面：先选模组（角色卡）→ 进入后顶部横幅控世界书 → 左栏精简为队伍。
+
+SillyTavern 保真度补齐：
+- 世界书 min_activations / max_recursion_steps（ST 真实语义与互斥规则）
+- 开场白按 getFirstMessage：first_mes + alternates 合成 swipes，含 swipe_info
+- 聊天改用 ST 原生 .jsonl（首行 chat_metadata，消息 mes/is_user/extra）
+- 会话管理 st_list_chats / st_new_chat / st_rename_chat / st_delete_chat
+- 聊天历史导入
+
+验收：verify 56 / st-import 31 / e2e 44 / client 66，全绿

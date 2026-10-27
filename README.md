@@ -131,6 +131,22 @@ node scripts/verify-e2e.mjs        # 真起 dsh web 验 HTTP
 node scripts/verify-st-import.mjs  # 真实 ST 数据导入验收
 \`\`\`
 
+## SillyTavern 保真度
+
+这一版按 ST 的真实源码逐项对齐，不再只做「能跑」：
+
+| 能力 | ST 语义 | 本插件 |
+|---|---|---|
+| 世界书扫描 | 常量/关键词/二级组合/递归/包含组/概率/预算 | 一致，另实现 `min_activations` 与 `max_recursion_steps` |
+| 世界书定时 | sticky / cooldown / delay 落 chat_metadata | 一致，`timedWorldInfo` 结构相同 |
+| 开场白 | first_mes + alternate_greetings 合成 swipes | 一致，含 `swipe_info`；绑定角色时自动写入会话 |
+| 聊天格式 | `.jsonl`，首行 `chat_metadata`，消息用 `mes/is_user/extra` | 一致，可直读 ST 文件 |
+| swipe | 只移动 `swipe_id`，不改 `swipes` | 一致 |
+| 聊天管理 | 一个角色多个存档 | `st_list_chats` / `st_new_chat` / `st_rename_chat` / `st_delete_chat` |
+| 聊天导入 | — | 从 ST 的 `chats/<角色>/*.jsonl` 直接导入 |
+
+`chat_metadata` 字段：`integrity` `chat_id_hash` `note_prompt` `note_interval` `note_position` `note_depth` `note_role` `timedWorldInfo` `variables`。
+
 ## 已知限制
 
 - **@depth 不是真的插进对话**。DSH 的对话历史由宿主管，插件插不进去。

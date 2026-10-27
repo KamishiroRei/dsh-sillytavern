@@ -14,11 +14,15 @@
     "cordis.patch.yml",
     "README.md",
     "dsh-plugin.json",
-    "scripts"
+    "scripts",
+    "presets"
   ],
   "dsh": {
     "bundle": {
-      "patch": "./cordis.patch.yml"
+      "patch": [
+        "./cordis.patch.yml",
+        "./presets/sillytavern.patch.yml"
+      ]
     },
     "client": {
       "platform": "web",

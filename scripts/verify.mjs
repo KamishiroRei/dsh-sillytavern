@@ -615,7 +615,7 @@ if (applyOk) {
     missing.length ? EXPECTED_TOOLS[missing[0]] : undefined)
   const extra = tools.filter(name => !Object.hasOwn(EXPECTED_TOOLS, name))
   if (extra.length) note('契约外的额外工具: ' + extra.join(', '))
-  check('工具名带 st_ / trpg_ / stage_ 前缀', tools.every(t => t.startsWith('st_') || t.startsWith('trpg_') || t.startsWith('stage_')),
+  check('工具名带 st_ / trpg_ / stage_ / tavern_ 前缀', tools.every(t => t.startsWith('st_') || t.startsWith('trpg_') || t.startsWith('stage_') || t.startsWith('tavern_')),
     tools.filter(t => !t.startsWith('st_') && !t.startsWith('trpg_')).join(', '))
   check('工具名唯一', new Set(tools).size === tools.length)
   const unowned = tools.filter(name => !ownerOfTool.has(name))
